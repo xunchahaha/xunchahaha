@@ -8,4 +8,4 @@
 [![Anurag's GitHub stats-Light](https://github-readme-stats-one-bice.vercel.app/api?username=xunchahaha&count_private=true&show_icons=true&role=OWNER,ORGANIZATION_MEMBER,COLLABORATOR&show_icons=true&theme=default#gh-light-mode-only)](https://github.com/anuraghazra/github-readme-stats#gh-light-mode-only)
 
 ## 📫 怎么联系我？
-- TG: @xunchahaha
+- TG: [@xunchahaha](https://t.me/xunchahaha)
