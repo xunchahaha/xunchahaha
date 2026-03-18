@@ -1,5 +1,5 @@
 # 👋 Hi, 我叫寻茶
-
+## 男子大一生😋目前在天津某应用技术大学读书 欢迎来找我玩
 
 <a href="https://github.com/xunchahaha/"><img align="right" src="https://komarev.com/ghpvc/?username=xunchahaha&label=Views"></a>
 
