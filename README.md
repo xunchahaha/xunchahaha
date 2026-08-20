@@ -9,3 +9,4 @@
 
 ## 📫 怎么联系我？
 - TG: [@xunchahaha](https://t.me/xunchahaha)
+- Mail: xunchahaha31@gmail.com
