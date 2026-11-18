@@ -1,385 +1,155 @@
-<!doctype html>
-<html lang="zh-CN">
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>xuncha 更新日志</title>
-<meta name="description" content="寻茶（xuncha）的发布页：软件工程本科在读，WeFlow 主要维护者之一，现在在做 wuuud。">
-<meta name="color-scheme" content="light dark">
-<!-- 主题要在首屏绘制前确定，避免闪白：URL 参数 ?theme=dark|light 优先，其次是本地记住的选择 -->
-<script>
-  (function () {
-    var t = null;
-    try { t = new URLSearchParams(location.search).get('theme'); } catch (e) {}
-    if (t !== 'dark' && t !== 'light') { try { t = localStorage.getItem('xuncha-theme'); } catch (e) {} }
-    if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t);
-  })();
-</script>
-<link rel="preload" href="assets/fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="assets/css/base.css?v=2611b">
-<link rel="stylesheet" href="assets/css/hero.css?v=2611b">
-<link rel="stylesheet" href="assets/css/changelog.css?v=2611b">
-<link rel="stylesheet" href="assets/css/page.css?v=2611b">
-<link rel="icon" href="assets/img/avatar.jpg">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>xuncha · 寻茶</title>
+  <meta name="description" content="寻茶（xuncha）：2025 级软工在读，拆开没文档的黑盒协议，做成几千人顺手在用的软件。" />
+  <link rel="icon" href="./assets/img/avatar.jpg" />
+  <link rel="preload" href="./assets/fonts/SchibstedGrotesk-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="./assets/fonts/JetBrainsMono-var.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Noto+Serif+SC:wght@600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-<a class="skip" href="#changelog">跳到更新日志</a>
-
-<!-- ============ 首屏：深色「河道」底，主角是逐周贡献图 ============ -->
-<div class="band" id="top">
-  <header class="topbar wrap">
-    <a class="brand" href="#top">xuncha</a>
-    <nav class="nav" aria-label="页面导航">
-      <a href="#changelog">更新日志</a>
-      <a href="#readme">README</a>
-      <a href="#more">其它仓库</a>
-    </nav>
-    <div class="topbar-tools">
-      <button class="icon-btn" id="theme-btn" type="button" aria-label="切换深色模式">
-        <svg class="i-moon" viewBox="0 0 20 20" aria-hidden="true"><path d="M15.5 12.6A6.5 6.5 0 0 1 7.4 4.5a6.5 6.5 0 1 0 8.1 8.1Z"/></svg>
-        <svg class="i-sun" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="3.4"/><path d="M10 1.8v2M10 16.2v2M1.8 10h2M16.2 10h2M4.2 4.2l1.4 1.4M14.4 14.4l1.4 1.4M4.2 15.8l1.4-1.4M14.4 5.6l1.4-1.4"/></svg>
-      </button>
-      <a class="icon-btn" href="https://github.com/xunchahaha" aria-label="GitHub 主页">
-        <svg viewBox="0 0 16 16" aria-hidden="true" class="i-fill"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
+  <header class="float-header">
+    <nav class="nav-pill" aria-label="主导航">
+      <a class="brand-chip" href="#top">
+        <img id="nav-avatar" alt="xuncha" width="26" height="26" />
+        <span>xuncha</span>
       </a>
-    </div>
+      <div class="nav-links">
+        <a href="#works">作品</a>
+        <a href="#opensource">开源</a>
+        <a href="#about">关于</a>
+        <a href="#contact">联系</a>
+      </div>
+      <button type="button" class="theme-chip" id="theme-btn" aria-label="切换深浅色">
+        <span aria-hidden="true">◐</span>
+      </button>
+    </nav>
   </header>
 
-  <section class="hero wrap" aria-label="xuncha">
-    <div class="who">
-      <img class="ava" src="assets/img/avatar.jpg" data-alt-src="https://github.com/xunchahaha.png?size=200" alt="xuncha 的头像" width="88" height="88" data-fallback="寻">
-      <div class="who-text">
-        <h1><span class="name-lat">xuncha</span><span class="name-zh">寻茶</span></h1>
-        <p class="bio">软件工程本科在读，2025 级。WeFlow 主要维护者之一，现在在做 <a href="https://wuuud.com">wuuud</a>。</p>
-        <ul class="reach" aria-label="联系方式">
-          <li>
-            <svg class="reach-i" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0 0 16 8c0-4.42-3.58-8-8-8Z"/></svg>
-            <a class="reach-v" href="https://github.com/xunchahaha" aria-label="GitHub：xunchahaha">xunchahaha</a>
-          </li>
-          <li>
-            <svg class="reach-i" viewBox="0 0 16 16" aria-hidden="true"><path d="M14.6 1.6 1.2 6.8c-.9.36-.9.88-.16 1.1l3.4 1.06 1.3 4c.16.44.08.62.54.62.36 0 .52-.16.72-.36l1.66-1.6 3.44 2.54c.64.36 1.1.17 1.26-.58l2.28-10.74c.24-.94-.36-1.36-.98-1.08ZM5.1 9.7l7.1-4.48c.34-.2.66-.1.4.14L6.5 10.7l-.24 2.6L5.1 9.7Z"/></svg>
-            <a class="reach-v" href="https://t.me/xunchahaha" aria-label="Telegram：@xunchahaha">@xunchahaha</a>
-            <button class="copy" type="button" data-copy="@xunchahaha" aria-label="复制 Telegram 用户名"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.6"/><path d="M10.5 3.6V3.4A1.4 1.4 0 0 0 9.1 2H3.4A1.4 1.4 0 0 0 2 3.4v5.7a1.4 1.4 0 0 0 1.4 1.4h.2"/></svg></button>
-          </li>
-          <li>
-            <svg class="reach-i reach-i-line" viewBox="0 0 16 16" aria-hidden="true"><rect x="1.5" y="3" width="13" height="10" rx="1.8"/><path d="m2 4 6 5 6-5"/></svg>
-            <a class="reach-v" href="mailto:xunchahaha31@gmail.com">xunchahaha31@gmail.com</a>
-            <button class="copy" type="button" data-copy="xunchahaha31@gmail.com" aria-label="复制邮箱地址"><svg viewBox="0 0 16 16" aria-hidden="true"><rect x="5.5" y="5.5" width="8" height="8" rx="1.6"/><path d="M10.5 3.6V3.4A1.4 1.4 0 0 0 9.1 2H3.4A1.4 1.4 0 0 0 2 3.4v5.7a1.4 1.4 0 0 0 1.4 1.4h.2"/></svg></button>
-          </li>
-        </ul>
-        <p class="visually-hidden" id="copy-status" aria-live="polite"></p>
+  <main id="top">
+    <section class="hero wrap">
+      <div class="hero-copy">
+        <div class="live-pill reveal-up" style="--d: 0ms">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span id="hero-status"></span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="clip-line"><span class="clip-inner" style="--d: 60ms">xuncha</span></span>
+          <span class="clip-line"><em class="clip-inner zh-accent" style="--d: 140ms">寻茶</em></span>
+        </h1>
+
+        <p class="hero-tagline reveal-up" style="--d: 220ms" id="hero-tagline"></p>
+
+        <div class="hero-metrics reveal-up" style="--d: 300ms" id="hero-metrics"></div>
       </div>
+
+      <div class="hero-card-wrap reveal-up" style="--d: 180ms">
+        <div class="profile-card" id="profile-card">
+          <div class="pc-head">
+            <button type="button" class="pc-avatar-btn" id="avatar-trigger" title="点一下头像">
+              <img id="hero-avatar" alt="xuncha 头像" width="76" height="76" />
+              <span class="online-ring" aria-hidden="true"></span>
+            </button>
+            <div class="pc-id">
+              <div class="pc-name-row">
+                <strong>xunchahaha</strong>
+                <a href="https://github.com/xunchahaha" target="_blank" rel="noopener">GitHub ↗</a>
+              </div>
+              <p>WeFlow 维护者 · 在做 <a href="https://wuuud.com" target="_blank" rel="noopener">wuuud</a></p>
+              <div class="pc-quick-tags">
+                <span>TypeScript</span>
+                <span>Electron</span>
+                <span>Python</span>
+                <span>协议逆向</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="pc-chart-box">
+            <div class="pc-chart-top">
+              <span id="chart-readout">5,773 次贡献 · 223 活跃天</span>
+              <span class="chart-peak">Peak 357/day</span>
+            </div>
+            <div class="pc-bars" id="pc-bars" aria-label="过去一年每周提交趋势"></div>
+            <div class="pc-axis">
+              <span>25.12</span>
+              <span>26.03</span>
+              <span>26.06</span>
+              <span>26.09</span>
+              <span>26.11</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="flow-bridge wrap">
+      <div class="spine-track" aria-hidden="true">
+        <svg viewBox="0 0 24 132" fill="none">
+          <path class="spine-bg" d="M12 0 C12 42, 5 68, 12 132" />
+          <path class="spine-fg" id="spine-1" d="M12 0 C12 42, 5 68, 12 132" />
+        </svg>
+      </div>
+      <div class="scrub-statement" id="scrub-statement"></div>
+    </section>
+
+    <section class="works-section wrap" id="works">
+      <div class="works-grid" id="works-grid"></div>
+    </section>
+
+    <section class="oss-river" id="opensource">
+      <div class="wrap oss-head scroll-reveal">
+        <div class="oss-stat">
+          <strong>167</strong>
+          <span>/ 184 外部仓库 PR 已合入 · 90.8%</span>
+        </div>
+        <a class="ghost-pill" id="pr-search-link" target="_blank" rel="noopener">查看全部 PR ↗</a>
+      </div>
+
+      <div class="marquee-wrap">
+        <div class="marquee-track" id="marquee-1"></div>
+        <div class="marquee-track is-reverse" id="marquee-2"></div>
+      </div>
+    </section>
+
+    <section class="about-section wrap" id="about">
+      <div class="craft-row" id="craft-cards"></div>
+    </section>
+
+    <section class="closing wrap" id="contact">
+      <div class="spine-track spine-short" aria-hidden="true">
+        <svg viewBox="0 0 24 88" fill="none">
+          <path class="spine-bg" d="M12 0 C17 30, 7 58, 12 88" />
+          <path class="spine-fg" id="spine-2" d="M12 0 C17 30, 7 58, 12 88" />
+        </svg>
+      </div>
+
+      <h2 class="closing-title scroll-reveal">找我聊聊，或者一起做点有意思的东西。</h2>
+      <div class="contact-pills scroll-reveal" id="contact-pills"></div>
+
+      <button type="button" class="back-top" id="back-top">↑ 回到顶部</button>
+    </section>
+  </main>
+
+  <dialog class="shot-dialog" id="shot-dialog">
+    <div class="dialog-bar">
+      <span id="dialog-title"></span>
+      <button type="button" id="dialog-close">关闭 ESC</button>
     </div>
-
-    <!-- 签名：一段被 ISAAC-64 密钥流 XOR 过的字节，拖动滑块逐字节解回来 -->
-    <figure class="sig" aria-label="GitHub 签名">
-      <p class="sig-plain">流水不争先 争的是滔滔不绝</p>
-      <div class="sig-bytes" id="sig-bytes" aria-hidden="true"></div>
-      <div class="sig-ctl">
-        <label class="visually-hidden" for="sig-range">XOR 解开的字节数</label>
-        <input type="range" id="sig-range" min="0" max="36" value="0" step="1">
-      </div>
-    </figure>
-  </section>
-
-  <section class="cadence wrap" aria-labelledby="cadence-title">
-    <h2 class="visually-hidden" id="cadence-title">过去一年的提交节奏</h2>
-    <div class="graph" id="graph">
-      <div class="graph-plot" id="graph-plot" tabindex="0" role="group" aria-roledescription="柱状图" aria-label="过去一年每周贡献次数。用左右方向键逐周查看，Home 和 End 跳到两端。" aria-describedby="graph-read">
-        <svg id="graph-svg" aria-hidden="true"></svg>
-      </div>
-      <div class="graph-tags" id="graph-tags"></div>
+    <div class="dialog-img-wrap">
+      <img id="dialog-img" alt="" />
     </div>
-    <p class="graph-read" id="graph-read" aria-live="polite"><b>5,773</b> 次贡献 · 223 天</p>
-  </section>
-</div>
+  </dialog>
 
-<main>
-  <!-- ============ 更新日志 ============ -->
-  <section class="changelog wrap" id="changelog" aria-labelledby="changelog-title">
-    <h2 class="sec-title" id="changelog-title">更新日志</h2>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-    <!-- v2026.11 -->
-    <article class="release is-head" id="v2026-11">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-11"><time datetime="2026-11">v2026.11</time></a>
-        <p class="key"><b>690+</b>注册用户</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title"><img class="logo" src="assets/img/wuuud.png" data-alt-src="https://cdn.jsdelivr.net/gh/Wuuud-ai/Wuuud@main/assets/wuuud-logo.png" alt="" width="28" height="28" data-fallback=""><span>加入 <a href="https://github.com/Wuuud-ai/Wuuud">wuuud</a></span></h3>
-        <p>在电脑上查看、搜索、导出微信 4.x 聊天记录，生成年度总结。日活 140+，近 30 天新增 610+。</p>
-        <figure class="shot">
-          <button class="shot-crop" type="button" data-full="wuuud" aria-label="放大查看 wuuud 整张截图">
-            <img class="shot-light" src="assets/img/wuuud-light.jpg" data-alt-src="https://cdn.jsdelivr.net/gh/Wuuud-ai/Wuuud@main/assets/screenshots/chat-light.jpg" alt="" width="1440" height="900" loading="lazy" data-fallback="wuuud 截图" style="--x: -318px; --y: 100%; --ym: 84%">
-            <img class="shot-dark" src="assets/img/wuuud-dark.jpg" data-alt-src="https://cdn.jsdelivr.net/gh/Wuuud-ai/Wuuud@main/assets/screenshots/chat-dark.jpg" alt="" width="1440" height="900" loading="lazy" data-fallback="wuuud 截图" style="--x: -318px; --y: 100%; --ym: 84%">
-          </button>
-        </figure>
-      </div>
-    </article>
-
-    <!-- v2026.10 -->
-    <article class="release" id="v2026-10">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-10"><time datetime="2026-10">v2026.10</time></a>
-        <p class="key"><b>11,207</b>次下载</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title"><img class="logo" src="assets/img/alpha.png" data-alt-src="https://cdn.jsdelivr.net/gh/xunchahaha/alpha-releases@main/assets/alpha-icon.png" alt="" width="28" height="28" data-fallback=""><span>发布 <a href="https://github.com/xunchahaha/alpha-releases">Alpha</a></span></h3>
-        <p>在电脑上查看、搜索、分析、导出聊天记录，普通功能全部免费。一个月发了 5 个版本，347 Star。</p>
-        <figure class="shot">
-          <button class="shot-crop" type="button" data-full="alpha" aria-label="放大查看 Alpha 整张截图">
-            <img class="shot-dim" src="assets/img/alpha-chat.jpg" data-alt-src="https://cdn.jsdelivr.net/gh/xunchahaha/alpha-releases@main/assets/screenshots/chat.png" alt="" width="1440" height="900" loading="lazy" data-fallback="Alpha 截图" style="--x: 0%; --y: 0%">
-          </button>
-        </figure>
-        <dl class="log">
-          <dt class="t-dep">停更</dt>
-          <dd><ul>
-            <li><code>0.3.5</code></li>
-          </ul></dd>
-        </dl>
-      </div>
-    </article>
-
-    <!-- v2026.09.27 小版本 -->
-    <article class="release is-patch" id="v2026-09-27">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-09-27"><time datetime="2026-09-27">v2026.09.27</time></a>
-      </header>
-      <div class="rel-body">
-        <p><strong>357</strong> 次贡献</p>
-      </div>
-    </article>
-
-    <!-- v2026.08 -->
-    <article class="release" id="v2026-08">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-08"><time datetime="2026-08">v2026.08</time></a>
-        <span class="ver-to">起</span>
-        <p class="key key-txt">飞书 AI 大赛</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title">
-          <!-- 途排智策的图标直接内联，不受服务器 SVG MIME 类型影响 -->
-          <svg class="logo" viewBox="0 0 64 64" aria-hidden="true"><rect width="64" height="64" rx="14" fill="#2563eb"/><path d="M19 17h26a4 4 0 0 1 4 4v26a4 4 0 0 1-4 4H19a4 4 0 0 1-4-4V21a4 4 0 0 1 4-4Z" fill="none" stroke="#fff" stroke-width="4"/><path d="M23 12v10M41 12v10M15 28h34M23 36h7M35 36h7M23 43h7M35 43h7" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="4"/></svg><a href="https://github.com/xunchahaha/tupai-zhice">途排智策</a>
-        </h3>
-        <p>智能排课系统，独立开发，已部署上线。FastAPI + SQLAlchemy + React。</p>
-        <ol class="pipe" aria-label="排课数据链路">
-          <li>自然语言规则</li>
-          <li>LLM 解析成结构化约束</li>
-          <li>人工确认</li>
-          <li>OR-Tools CP-SAT 求解</li>
-        </ol>
-        <dl class="log">
-          <dt class="t-add">新增</dt>
-          <dd><ul>
-            <li>CP-SAT 求解教师、教室、时段之间的冲突。</li>
-            <li>和飞书多维表格双向同步。</li>
-          </ul></dd>
-        </dl>
-      </div>
-    </article>
-
-    <!-- v2026.04 -->
-    <article class="release" id="v2026-04">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-04"><time datetime="2026-04">v2026.04</time></a>
-        <p class="key key-txt">挑战杯校级二等奖</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title">津彩导览</h3>
-        <p>非遗展示微信小程序里的导览 Agent，主要开发成员。</p>
-        <dl class="log">
-          <dt class="t-add">新增</dt>
-          <dd><ul>
-            <li>多轮对话的上下文裁剪。</li>
-            <li>服务型回复约束。</li>
-            <li>接入 DeepSeek API，回复用 Markdown 渲染。</li>
-          </ul></dd>
-        </dl>
-      </div>
-    </article>
-
-    <!-- v2026.03 -->
-    <article class="release" id="v2026-03">
-      <header class="rel-meta">
-        <a class="ver" href="#v2026-03"><time datetime="2026-03">v2026.03</time></a>
-        <span class="ver-to">– <time datetime="2026-07">2026.07</time></span>
-        <p class="key"><b>4,189</b>累计用户</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title"><img class="logo" src="assets/img/jiaowu.png" alt="" width="28" height="28" data-fallback="">教务助手上线</h3>
-        <p>校园教务微信小程序，独立开发，每天约 1,900 人访问。</p>
-        <dl class="log">
-          <dt class="t-add">新增</dt>
-          <dd><ul>
-            <li>还原教务系统登录与数据链路：MD5 请求签名、Base64、Token 会话。</li>
-            <li>成绩、课表、考试、教材、空教室查询。</li>
-            <li>按账号和业务隔离缓存，连不上教务系统时回退到离线数据。</li>
-            <li>课表订阅提醒（云函数）。</li>
-          </ul></dd>
-        </dl>
-      </div>
-    </article>
-
-    <!-- v2025.12 -->
-    <article class="release" id="v2025-12">
-      <header class="rel-meta">
-        <a class="ver" href="#v2025-12"><time datetime="2025-12">v2025.12</time></a>
-        <span class="ver-to">起</span>
-        <p class="key"><b>457</b>次 WeFlow 提交</p>
-      </header>
-      <div class="rel-body">
-        <h3 class="rel-title">加入 WeFlow 和 EchoTrace</h3>
-
-        <section class="part" aria-labelledby="weflow-h">
-          <h4 class="part-title" id="weflow-h"><img class="logo" src="assets/img/weflow.png" data-alt-src="https://cdn.jsdelivr.net/gh/hicccc77/WeFlow@main/resources/installer/linux/icon.png" alt="" width="24" height="24" data-fallback=""><a href="https://github.com/hicccc77/WeFlow">WeFlow</a></h4>
-          <p class="part-lede">约 16k Star，合并 PR 93 个。</p>
-          <dl class="log">
-            <dt class="t-add">新增</dt>
-            <dd><ul>
-              <li>群聊分析、批量语音转文字。</li>
-              <li>转账与 XML 消息解析。</li>
-              <li>朋友圈多选导出、防撤回。</li>
-            </ul></dd>
-            <dt class="t-fix">修复</dt>
-            <dd><ul>
-              <li>导入失败、统计卡顿、导出记录遗漏。</li>
-              <li>HTTP API 返回大整数 ID 时精度错乱。</li>
-            </ul></dd>
-            <dt class="t-chg">改动</dt>
-            <dd><ul>
-              <li>群系统消息改成可读文本，同步到 JSON、TXT、HTML、Excel、ChatLab 等 7 类导出路径。</li>
-            </ul></dd>
-            <dt class="t-res">研究</dt>
-            <dd>
-              <p>朋友圈图片、视频、实况照片的媒体解析与解密，技术文档发在看雪和吾爱论坛。</p>
-              <ol class="pipe" aria-label="朋友圈媒体解密链路">
-                <li>CDN 请求</li>
-                <li>token</li>
-                <li>ISAAC-64 密钥流</li>
-                <li>XOR 解密</li>
-                <li>WASM 加速，TypeScript 兜底</li>
-              </ol>
-            </dd>
-          </dl>
-        </section>
-
-        <section class="part" aria-labelledby="echo-h">
-          <h4 class="part-title" id="echo-h"><a href="https://github.com/ycccccccy/echotrace">EchoTrace</a></h4>
-          <p class="part-lede">约 3.9k Star，Flutter。提交 78 次，贡献量排第二。</p>
-          <dl class="log">
-            <dt class="t-add">新增</dt>
-            <dd><ul>
-              <li>双人年度报告，独立设计实现：好友搜索与排除、多页数据展示、生成与清理缓存。</li>
-              <li>月度好友、表情包统计。</li>
-            </ul></dd>
-            <dt class="t-fix">修复</dt>
-            <dd><ul>
-              <li>数据库连接、密钥获取。</li>
-              <li>isolate 任务异常、表情包卡死。</li>
-            </ul></dd>
-          </dl>
-        </section>
-      </div>
-    </article>
-
-    <!-- v2025.09 -->
-    <article class="release is-patch is-root" id="v2025-09">
-      <header class="rel-meta">
-        <a class="ver" href="#v2025-09"><time datetime="2025-09">v2025.09</time></a>
-      </header>
-      <div class="rel-body">
-        <p>软件工程本科入学</p>
-      </div>
-    </article>
-  </section>
-
-  <!-- ============ README ============ -->
-  <section class="readme wrap" id="readme" aria-labelledby="readme-title">
-    <h2 class="sec-title" id="readme-title">README</h2>
-    <div class="readme-grid">
-      <div class="readme-text">
-        <p>大部分时间花在三件事上：把 Bug 复现出来，读日志，把一条数据链路从头跟到尾。</p>
-        <p>用 AI 辅助开发，但 diff 要读，日志要查，类型检查和实际运行都要过。</p>
-        <p>碰到没有公开文档的数据格式和通信协议，就用反汇编和抓包把它还原出来。</p>
-      </div>
-      <div class="stack">
-        <dl>
-          <div><dt>日常</dt><dd>TypeScript、JavaScript、Node.js、Electron、React</dd></div>
-          <div><dt>脚本与后端</dt><dd>Python、Shell、FastAPI、SQLAlchemy</dd></div>
-          <div><dt>也接触过</dt><dd>Flutter / Dart、微信小程序、C / C++、Gaussian</dd></div>
-        </dl>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ 其它仓库 ============ -->
-  <section class="more wrap" id="more" aria-labelledby="more-title">
-    <h2 class="sec-title" id="more-title">其它仓库</h2>
-    <ul class="repos">
-      <li>
-        <a class="repo-name" href="https://github.com/xunchahaha/mi_nobl_root">mi_nobl_root</a>
-        <p>小米设备免解 BL 的 KSU + LSP 方案，443 Star。</p>
-      </li>
-      <li>
-        <a class="repo-name" href="https://github.com/xunchahaha/OpenWrt-Network-Watchdog">OpenWrt-Network-Watchdog</a>
-        <p>OpenWrt / Kwrt 网络看门狗：断网自动重连，动态 IP 下校园网自动认证。</p>
-      </li>
-      <li>
-        <a class="repo-name" href="https://github.com/xunchahaha/woof">woof</a>
-        <p>基于 Whisper 的 Windows 本地实时视频字幕：系统内录、GPU 加速、繁简转换、字幕导出。</p>
-      </li>
-    </ul>
-    <p class="upstream">给别人的仓库提过 <a href="https://github.com/search?q=is%3Apr+author%3Axunchahaha+-user%3Axunchahaha&amp;type=pullrequests">184 个 PR</a>，合并 167 个。也给 ChatLab、open-design 提过；给 chaoxing-work-export 修过带图片题目导出时的缩放和答案遗漏。</p>
-  </section>
-
-  <!-- ============ 竞赛与科研 ============ -->
-  <section class="research wrap" aria-labelledby="research-title">
-    <h2 class="sec-title" id="research-title">竞赛与科研</h2>
-    <div class="papers">
-      <article>
-        <h3>全国大学生数学建模竞赛</h3>
-        <p class="role">省一等奖</p>
-      </article>
-      <article>
-        <h3>亚太地区大学生数学建模竞赛</h3>
-        <p class="role">队长，负责建模和论文主稿</p>
-        <p>关税政策：市场份额分配、供应链优化、Laffer 曲线、VAR / Granger 检验。</p>
-      </article>
-      <article>
-        <h3>全国大学生统计建模大赛</h3>
-        <p class="role">省三等奖</p>
-        <p>新能源汽车政策与城市碳排放。273 个城市面板、342 个城市销量，多期 TWFE-DID、事件研究、安慰剂检验、异质性回归。</p>
-      </article>
-      <article>
-        <h3>课题组计算化学数据流程</h3>
-        <p class="role">黄酮抗氧化与 ESIPT</p>
-        <p>用 Python 批量生成 Gaussian 输入，107 个分子、511 个作业。</p>
-      </article>
-    </div>
-  </section>
-</main>
-
-<footer class="foot">
-  <div class="wrap foot-in">
-    <p class="foot-fine">截图为演示数据</p>
-  </div>
-</footer>
-
-<dialog class="viewer" id="viewer" aria-label="截图大图">
-  <form method="dialog" class="viewer-bar">
-    <p id="viewer-title" class="visually-hidden"></p>
-    <button class="viewer-close" type="submit" aria-label="关闭"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3.5 3.5l9 9M12.5 3.5l-9 9"/></svg></button>
-  </form>
-  <img id="viewer-img" alt="">
-</dialog>
-
-<script src="assets/js/theme.js?v=2611b"></script>
-<script src="assets/js/copy.js?v=2611b"></script>
-<script src="assets/js/isaac64.js?v=2611b"></script>
-<script src="assets/js/signature.js?v=2611b"></script>
-<script src="assets/js/graph.js?v=2611b"></script>
-<script src="assets/js/shots.js?v=2611b"></script>
-<script src="assets/js/images.js?v=2611b"></script>
+  <script type="module" src="./app.js"></script>
 </body>
 </html>
